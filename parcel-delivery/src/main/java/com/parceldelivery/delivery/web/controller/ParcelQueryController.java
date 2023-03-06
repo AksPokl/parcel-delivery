@@ -26,7 +26,6 @@ public class ParcelQueryController {
 
     private final ParcelDetailQueryService parcelDetailQueryService;
 
-
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/parcel/{parcelId}")
     public ResponseEntity<ParcelDeliveryDetailResponse> getUserParcelDeliveryDetail(@PathVariable("parcelId") UUID parcelId) {
