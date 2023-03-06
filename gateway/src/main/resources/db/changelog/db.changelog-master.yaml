@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/create_message_metadata.sql
+  - include:
+      file: db/changelog/create_uuid_extension.sql
+

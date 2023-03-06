@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/create_courier.sql
+  - include:
+      file: db/changelog/create_courier_status.sql
+

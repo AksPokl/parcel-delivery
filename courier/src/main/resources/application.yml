@@ -1,0 +1,50 @@
+server:
+  port: ${SERVER_PORT:8082}
+spring:
+  application.name: ${APPLICATION_NAME:courier}
+  liquibase.enabled: true
+  datasource:
+    url: jdbc:postgresql://${SQL_HOST:localhost}:5432/parcel_delivery
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+    jpa:
+      hibernate:
+        ddl-auto: create-drop
+      show-sql: true
+      database: postgresql
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+  rabbitmq:
+    listener:
+      simple:
+        acknowledge-mode: manual
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_HOST:localhost}:8761/eureka
+    instance:
+      hostname: auth
+
+# App Properties
+jwt:
+  hmacSecret: 671491AE98362741F722202EED3288E8FF2508B35315ADBF75EEB3195A926B40
+
+feign:
+  client:
+    auth:
+      url: http://${AUTH_HOST:localhost}:8081
+    parcel-delivery:
+      url: http://${PARCEL_DELIVERY_HOST:localhost}:8083
+
+rabbitmq:
+  host: ${RABBITMQ_HOST:localhost}
+  password: guest
+  port: 15672
+  username: guest
+  exchange: orderdelivery.exchange
+  routingkeytosend: orderdelivery.deliverykey
+  routingkey: orderdelivery.courierkey
+  queue: orderdelivery.courier
+
+
